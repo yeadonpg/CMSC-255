@@ -31,6 +31,7 @@ public class Exercise04_13 {
                 case 'I':
                 case 'O':
                 case 'U':
+                case 'Y':
                     System.out.println(userChar + " is a vowel");
                     break;
                 default:
