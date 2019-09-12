@@ -34,6 +34,7 @@ public class HelloJFX extends Application{
         Scene scene = new Scene(root, width, height);
 
         // Staging the scene and showing
+        stage.setTitle("Hello World");
         stage.setScene(scene);
         stage.show();
     }
