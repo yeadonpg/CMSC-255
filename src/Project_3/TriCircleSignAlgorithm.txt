@@ -13,5 +13,5 @@ Algorithm:
 - Calculate the total cost of the sign using the area and number of characters
 - Print the total cost, rounded to two decimal places
 - User inputs whether or not they'd like the program to restart
-- If the user enters "quit", the program will end; otherwise it will restart
+- If the user enters "quit", the algorithm will end; otherwise return to beginning
 ----------------------------------------------------------------------------------------------
