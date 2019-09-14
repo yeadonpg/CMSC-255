@@ -2,7 +2,7 @@
 Patrick Yeadon
 Tri Circle Sign
 Calculating the cost of a custom sign containing text
-09-13-2019
+09-14-2019
 CMSC-255-001
 ----------------------------------------------------------------------------------------------
 Algorithm:

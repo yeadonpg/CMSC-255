@@ -4,7 +4,7 @@ Programming Project 3 - Tri Circle Sign
 Calculating the cost of a custom sign containing text
 
 Patrick Yeadon
-09-13-2019
+09-14-2019
 CMSC-255-001
  */
 
