@@ -1,0 +1,17 @@
+----------------------------------------------------------------------------------------------
+Patrick Yeadon
+Tri Circle Sign
+Calculating the cost of a custom sign containing text
+09-13-2019
+CMSC-255-001
+----------------------------------------------------------------------------------------------
+Algorithm:
+- User inputs the length of a triangle side
+- User inputs their desired custom text
+- Calculate the number of non-blank characters
+- Calculate the area of a circle containing an equilateral triangle of the given side length
+- Calculate the total cost of the sign using the area and number of characters
+- Print the total cost, rounded to two decimal places
+- User inputs whether or not they'd like the program to restart
+- If the user enters "quit", the program will end; otherwise it will restart
+----------------------------------------------------------------------------------------------
