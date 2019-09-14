@@ -29,7 +29,7 @@ public class Palindrome
         generateOrManual = INPUT
         */
 
-        int number = 0; // Placeholder value
+        int userNum = 0; // Placeholder value
 
         boolean correctAnswer = false;
 
@@ -45,7 +45,7 @@ public class Palindrome
         if(generateOrManual == 1) // User chose to input manually
         {
             System.out.println("Enter the 3-digit number:");
-            number = in.nextInt();
+            userNum = in.nextInt();
 
             /*
             IF 99 < number < 1000: // Number is inside valid range
@@ -57,7 +57,7 @@ public class Palindrome
             END IF
             */
 
-            if(number > 99 && number < 1000) // Number is inside valid range
+            if(userNum > 99 && userNum < 1000) // Number is inside valid range
             {
                 correctAnswer = true;
             }
@@ -76,8 +76,8 @@ public class Palindrome
         
         else if(generateOrManual == 2) // User chose to let the computer generate a 3-digit number
         {
-            number = (int)(Math.random() * 899) + 100;
-            System.out.println(number);
+            userNum = (int)(Math.random() * 900) + 100;
+            System.out.println(userNum);
             correctAnswer = true;
         }
 
@@ -100,8 +100,8 @@ public class Palindrome
         */
 
         // Convert integer to string to get 1st character, then convert back to integer
-        int firstDigit = Integer.parseInt(Integer.toString(number).substring(0, 1));
-        int lastDigit = number % 10;
+        int firstDigit = Integer.parseInt(Integer.toString(userNum).substring(0, 1));
+        int lastDigit = userNum % 10;
 
         /*
         IF correctAnswer:
@@ -120,11 +120,11 @@ public class Palindrome
         {
             if(firstDigit == lastDigit)
             {
-                System.out.println(number + " is a palindrome");
+                System.out.println(userNum + " is a palindrome");
             }
             else
             {
-                System.out.println(number + " is not a palindrome");
+                System.out.println(userNum + " is not a palindrome");
             }
         }
 
