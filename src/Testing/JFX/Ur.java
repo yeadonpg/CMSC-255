@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -34,8 +35,7 @@ public class Ur extends Application {
         menuRoot.getChildren().add(exit);
 
         // Initializing and returning the completed scene
-        Scene mainMenu = new Scene(menuRoot, width, height);
-        return mainMenu;
+        return new Scene(menuRoot, width, height);
     }
 
     private static Scene createGameScene(Stage stage, Scene[] sceneHandler, int width, int height) {
@@ -50,8 +50,7 @@ public class Ur extends Application {
         gameRoot.getChildren().add(toMenu);
 
         // Initializing and returning the completed scene
-        Scene game = new Scene(gameRoot, width, height);
-        return game;
+        return new Scene(gameRoot, width, height);
     }
 
     @Override
@@ -73,7 +72,8 @@ public class Ur extends Application {
         sceneHandler[1] = game;
 
         // Staging the scene and showing
-        stage.setTitle("Ur");
+        stage.setTitle("");
+        stage.getIcons().add(new Image(Ur.class.getResourceAsStream("UrLogo.png")));
         stage.setScene(mainMenu);
         stage.show();
     }
