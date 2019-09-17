@@ -6,7 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class HelloJFX extends Application{
+public class HelloJFX extends Application {
     public static void main(String[] args) {
         // This method is called for all JavaFX Applications
         launch(args);
