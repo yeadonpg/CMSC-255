@@ -4,27 +4,29 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class Ur extends Application {
+    private static int WIDTH = 500;
+    private static int HEIGHT = 500;
+
     public static void main(String[] args) {
         launch(args);
     }
 
-    private static Scene getScene(Scene[] sceneHandler, int sceneIndex) {
-        return sceneHandler[sceneIndex];
-    }
-
-    private static Scene createMainMenuScene(Stage stage, Scene[] sceneHandler, int width, int height) {
-        // Creating start button
+    private static Scene createMainMenuScene(Stage stage) {
+        // Start button
         Button start = new Button("Start");
         // Start button navigates to the game scene, using the scene handler
-        start.setOnAction(e -> stage.setScene(getScene(sceneHandler, 1)));
+        start.setOnAction(e -> stage.setScene(createGameScene(stage)));
 
-        // Creating exit button
+        // Exit button
         Button exit = new Button("Exit");
         exit.setOnAction(e -> System.exit(0));
 
@@ -35,46 +37,48 @@ public class Ur extends Application {
         menuRoot.getChildren().add(exit);
 
         // Initializing and returning the completed scene
-        return new Scene(menuRoot, width, height);
+        return new Scene(menuRoot, WIDTH, HEIGHT);
     }
 
-    private static Scene createGameScene(Stage stage, Scene[] sceneHandler, int width, int height) {
-        // Creating back button
+    private static Scene createGameScene(Stage stage) {
+        // Creating the game canvas
+        Canvas canvas = new Canvas(150, 150);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        // Test button
+        Button testBtn = new Button("Test");
+        testBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                gc.setFill(Color.WHITE);
+                gc.fillRect(0, 0, 150, 150);
+                gc.setStroke(Color.BLACK);
+                gc.strokeOval(20, 20, 100, 100);
+            }
+        });
+
+        // Back button
         Button toMenu = new Button("Back");
         // toMenu button navigates to the mainMenu scene using the scene handler
-        toMenu.setOnAction(e -> stage.setScene(getScene(sceneHandler, 0)));
+        toMenu.setOnAction(e -> stage.setScene(createMainMenuScene(stage)));
 
         // Initializing pane for game objects to exist in
         VBox gameRoot = new VBox();
         // Adding game objects to the pane
         gameRoot.getChildren().add(toMenu);
+        gameRoot.getChildren().add(testBtn);
+        gameRoot.getChildren().add(canvas);
 
         // Initializing and returning the completed scene
-        return new Scene(gameRoot, width, height);
+        return new Scene(gameRoot, WIDTH, HEIGHT);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Initializing constants
-        final int width = 500;
-        final int height = 500;
-
-        // Initializing scene handler
-        // The handler allows the user to navigate to separate scenes
-        Scene[] sceneHandler = new Scene[2];
-
-        // Initializing scenes
-        Scene mainMenu = createMainMenuScene(stage, sceneHandler, width, height);
-        Scene game = createGameScene(stage, sceneHandler, width, height);
-
-        // Adding scenes to the scene handler
-        sceneHandler[0] = mainMenu;
-        sceneHandler[1] = game;
-
         // Staging the scene and showing
         stage.setTitle("");
         stage.getIcons().add(new Image(Ur.class.getResourceAsStream("UrLogo.png")));
-        stage.setScene(mainMenu);
+        stage.setScene(createMainMenuScene(stage));
         stage.show();
     }
 }
