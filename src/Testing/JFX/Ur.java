@@ -21,9 +21,8 @@ public class Ur extends Application {
     }
 
     private static Scene createMainMenuScene(Stage stage) {
-        // Start button
+        // Start button; navigates to the game scene
         Button start = new Button("Start");
-        // Start button navigates to the game scene, using the scene handler
         start.setOnAction(e -> stage.setScene(createGameScene(stage)));
 
         // Exit button
@@ -36,30 +35,31 @@ public class Ur extends Application {
         menuRoot.getChildren().add(start);
         menuRoot.getChildren().add(exit);
 
-        // Initializing and returning the completed scene
+        // Returning the completed scene
         return new Scene(menuRoot, WIDTH, HEIGHT);
     }
 
     private static Scene createGameScene(Stage stage) {
-        // Creating the game canvas
-        Canvas canvas = new Canvas(150, 150);
+        // Initializing canvas and graphics context
+        final int canvasWidth = 150;
+        final int canvasHeight = 150;
+        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        // Test button
+        // Test button; draws an oval on the canvas
         Button testBtn = new Button("Test");
         testBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
                 gc.setFill(Color.WHITE);
-                gc.fillRect(0, 0, 150, 150);
+                gc.fillRect(0, 0, canvasWidth, canvasHeight);
                 gc.setStroke(Color.BLACK);
-                gc.strokeOval(20, 20, 100, 100);
+                gc.strokeOval(20, 20, canvasWidth - 40, canvasHeight - 40);
             }
         });
 
-        // Back button
+        // Back button; navigates to the main menu
         Button toMenu = new Button("Back");
-        // toMenu button navigates to the mainMenu scene using the scene handler
         toMenu.setOnAction(e -> stage.setScene(createMainMenuScene(stage)));
 
         // Initializing pane for game objects to exist in
@@ -75,7 +75,7 @@ public class Ur extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Staging the scene and showing
+        // Staging the scene and showing the stage
         stage.setTitle("");
         stage.getIcons().add(new Image(Ur.class.getResourceAsStream("UrLogo.png")));
         stage.setScene(createMainMenuScene(stage));
