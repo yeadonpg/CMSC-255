@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Ur extends Application {
     private static int WIDTH = 500;
@@ -75,6 +76,7 @@ public class Ur extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        stage.initStyle(StageStyle.DECORATED);
         // Staging the scene and showing the stage
         stage.setTitle("");
         stage.getIcons().add(new Image(Ur.class.getResourceAsStream("UrLogo.png")));
