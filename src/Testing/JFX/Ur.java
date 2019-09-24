@@ -1,17 +1,26 @@
 package Testing.JFX;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class Ur extends Application {
     private static int WIDTH = 500;
@@ -22,25 +31,42 @@ public class Ur extends Application {
     }
 
     private static Scene createMainMenuScene(Stage stage) {
+        final int buttonWidth = 75;
         // Start button; navigates to the game scene
         Button start = new Button("Start");
+        start.setMinWidth(buttonWidth);
         start.setOnAction(e -> stage.setScene(createGameScene(stage)));
 
         // Exit button
         Button exit = new Button("Exit");
+        exit.setMinWidth(buttonWidth);
         exit.setOnAction(e -> System.exit(0));
 
+        // Title label
+        Label title = new Label("Ur");
+
+        // Subtitle label
+        Label subTitle = new Label("Press start to begin");
+
         // Initializing pane for menu objects to exist in
-        VBox menuRoot = new VBox();
+        GridPane menuRoot = new GridPane();
+        menuRoot.setGridLinesVisible(true);
         // Adding menu objects to the pane
-        menuRoot.getChildren().add(start);
-        menuRoot.getChildren().add(exit);
+        TilePane buttonBox = new TilePane(Orientation.VERTICAL);
+        buttonBox.setMinSize(WIDTH, HEIGHT);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.getChildren().addAll(title, subTitle, start, exit);
+
+        menuRoot.add(buttonBox, 0, 1);
 
         // Returning the completed scene
         return new Scene(menuRoot, WIDTH, HEIGHT);
     }
 
     private static Scene createGameScene(Stage stage) {
+        // Initializing pane for game objects to exist in
+        GridPane gameRoot = new GridPane();
+
         // Initializing canvas and graphics context
         final int canvasWidth = 150;
         final int canvasHeight = 150;
@@ -52,10 +78,7 @@ public class Ur extends Application {
         testBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                gc.setFill(Color.WHITE);
-                gc.fillRect(0, 0, canvasWidth, canvasHeight);
-                gc.setStroke(Color.BLACK);
-                gc.strokeOval(20, 20, canvasWidth - 40, canvasHeight - 40);
+
             }
         });
 
@@ -63,12 +86,11 @@ public class Ur extends Application {
         Button toMenu = new Button("Back");
         toMenu.setOnAction(e -> stage.setScene(createMainMenuScene(stage)));
 
-        // Initializing pane for game objects to exist in
-        VBox gameRoot = new VBox();
         // Adding game objects to the pane
-        gameRoot.getChildren().add(toMenu);
-        gameRoot.getChildren().add(testBtn);
-        gameRoot.getChildren().add(canvas);
+        gameRoot.setGridLinesVisible(true);
+        gameRoot.add(toMenu, 0, 0);
+        gameRoot.add(testBtn, 1, 0);
+        gameRoot.add(canvas, 0, 1, 2, 1);
 
         // Initializing and returning the completed scene
         return new Scene(gameRoot, WIDTH, HEIGHT);
@@ -76,7 +98,6 @@ public class Ur extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.initStyle(StageStyle.DECORATED);
         // Staging the scene and showing the stage
         stage.setTitle("");
         stage.getIcons().add(new Image(Ur.class.getResourceAsStream("UrLogo.png")));
