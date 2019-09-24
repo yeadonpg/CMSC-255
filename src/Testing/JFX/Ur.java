@@ -1,5 +1,6 @@
 package Testing.JFX;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -13,10 +14,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -67,20 +70,43 @@ public class Ur extends Application {
         // Initializing pane for game objects to exist in
         GridPane gameRoot = new GridPane();
 
+        // Setting up a method to record the mouse position
+        final double[] mousePos = {0, 0};
+        gameRoot.setOnMouseMoved(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                // Subtracting offsets to fit game canvas
+                mousePos[0] = mouseEvent.getSceneX() - 25;
+                mousePos[1] = mouseEvent.getSceneY() - 50;
+            }
+        });
+
         // Initializing canvas and graphics context
-        final int canvasWidth = 150;
-        final int canvasHeight = 150;
+        final int canvasWidth = WIDTH;
+        final int canvasHeight = HEIGHT;
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        // Test button; draws an oval on the canvas
-        Button testBtn = new Button("Test");
-        testBtn.setOnAction(new EventHandler<ActionEvent>() {
+        // Initializing and starting the game loop
+        final long startNanoTime = System.nanoTime();
+        new AnimationTimer() {
             @Override
-            public void handle(ActionEvent actionEvent) {
+            // This method is repeated 60 times every second
+            public void handle(long currentNanoTime) {
+                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
 
+                double circleX = 100 + 100 * Math.cos(t);
+                double circleY = 100 + 100 * Math.sin(t);
+
+                gc.setFill(Color.BLACK);
+                gc.fillRect(0, 0, WIDTH, HEIGHT);
+
+                gc.setStroke(Color.WHITE);
+                gc.strokeOval(circleX, circleY, 50, 50);
+                gc.setStroke(Color.RED);
+                gc.strokeOval(mousePos[0], mousePos[1], 50, 50);
             }
-        });
+        }.start();
 
         // Back button; navigates to the main menu
         Button toMenu = new Button("Back");
@@ -89,8 +115,7 @@ public class Ur extends Application {
         // Adding game objects to the pane
         gameRoot.setGridLinesVisible(true);
         gameRoot.add(toMenu, 0, 0);
-        gameRoot.add(testBtn, 1, 0);
-        gameRoot.add(canvas, 0, 1, 2, 1);
+        gameRoot.add(canvas, 0, 1, 1, 1);
 
         // Initializing and returning the completed scene
         return new Scene(gameRoot, WIDTH, HEIGHT);
