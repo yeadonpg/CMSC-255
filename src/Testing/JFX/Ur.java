@@ -182,6 +182,11 @@ public class Ur extends Application {
         whiteOnBoard[4][1] = true;
 
         char[][] board = {
+                /*
+                'r' = Rosette Space
+                'e' = Empty (Plain) Space
+                'n' = Not part of the board
+                 */
                 {'r', 'e', 'r'},
                 {'e', 'e', 'e'},
                 {'e', 'e', 'e'},
