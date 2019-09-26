@@ -75,10 +75,12 @@ public class Ur extends Application {
 
     private static int findPositionInPath(int[][] path, int[] positionToFind) {
         for (int i = 0; i < path.length; i++) {
-            if (positionToFind == path[i]) {
+            if (path[i][0] == positionToFind[0] && path[i][1] == positionToFind[1]) {
+                System.out.println("[UR] Found starting position: " + path[i][0] + ", " + path[i][1]);
                 return i;
             }
         }
+        System.out.println("[UR] Board position " + positionToFind[0] + ", " + positionToFind[1] + " not found");
         return -1;
     }
 
@@ -86,59 +88,76 @@ public class Ur extends Application {
         int[] nextSpace;
         int nextSpaceIndex;
         if (whiteOnBoard[currentSpace[0]][currentSpace[1]]) { // Moving white piece
+            System.out.println("[UR] Attempting to move WHITE piece by " + numSpaces);
             // Declaring the desired space to move to
-            nextSpaceIndex = findPositionInPath(whitePath, currentSpace) + numSpaces;
+            nextSpaceIndex = findPositionInPath(whitePath, currentSpace);
             if (nextSpaceIndex == -1) {
+                System.out.println("-----------------------------------");
                 return;
             }
+            nextSpaceIndex += numSpaces;
             nextSpace = whitePath[nextSpaceIndex];
-            System.out.println("[WHITE] Attempting to move:\nFROM: " + currentSpace + "\nTO: " + nextSpace);
+            System.out.println("[UR] Found landing position: " + nextSpace[0] + ", " + nextSpace[1]);
+            System.out.println("[WHITE] Attempting to move...");
             if (blackOnBoard[nextSpace[0]][nextSpace[1]]) {
                 if (board[nextSpace[0]][nextSpace[1]] == 'r') {
                     System.out.println("[WHITE] Cannot land on occupied rosette");
+                    System.out.println("-----------------------------------");
                     return;
                 }
                 System.out.println("[WHITE] Landing on BLACK");
 
                 // Kicking the piece off the board
                 blackOnBoard[nextSpace[0]][nextSpace[1]] = false;
+                System.out.println("[WHITE] Kicking BLACK off the board!");
 
             } else if (whiteOnBoard[nextSpace[0]][nextSpace[1]]) {
                 System.out.println("[WHITE] Cannot land on same team");
+                System.out.println("-----------------------------------");
                 return;
             }
 
             // Performing the action of moving the piece
             whiteOnBoard[currentSpace[0]][currentSpace[1]] = false;
             whiteOnBoard[nextSpace[0]][nextSpace[1]] = true;
+            System.out.println("[WHITE] Completed jump successfully");
 
         } else if (blackOnBoard[currentSpace[0]][currentSpace[1]]) { // Moving black piece
+            System.out.println("[UR] Attempting to move BLACK piece by " + numSpaces);
             // Declaring the desired space to move to
-            nextSpaceIndex = findPositionInPath(blackPath, currentSpace) + numSpaces;
+            nextSpaceIndex = findPositionInPath(blackPath, currentSpace);
             if (nextSpaceIndex == -1) {
+                System.out.println("-----------------------------------");
                 return;
             }
+            nextSpaceIndex += numSpaces;
             nextSpace = blackPath[nextSpaceIndex];
-            System.out.println("[BLACK] Attempting to move:\nFROM: " + currentSpace + "\nTO: " + nextSpace);
+            System.out.println("[UR] Found landing position: " + nextSpace[0] + ", " + nextSpace[1]);
+            System.out.println("[BLACK] Attempting to move...");
             if (whiteOnBoard[nextSpace[0]][nextSpace[1]]) {
                 if (board[nextSpace[0]][nextSpace[1]] == 'r') {
                     System.out.println("[BLACK] Cannot land on occupied rosette");
+                    System.out.println("-----------------------------------");
                     return;
                 }
                 System.out.println("[BLACK] Landing on WHITE");
 
                 // Kicking the piece off the board
                 whiteOnBoard[nextSpace[0]][nextSpace[1]] = false;
+                System.out.println("[BLACK] Kicking WHITE off the board!");
 
             } else if (blackOnBoard[nextSpace[0]][nextSpace[1]]) {
                 System.out.println("[BLACK] Cannot land on same team");
+                System.out.println("-----------------------------------");
                 return;
             }
 
             // Performing the action of moving the piece
             blackOnBoard[currentSpace[0]][currentSpace[1]] = false;
             blackOnBoard[nextSpace[0]][nextSpace[1]] = true;
+            System.out.println("[BLACK] Completed jump successfully");
         }
+        System.out.println("-----------------------------------");
     }
 
     private static void drawBoard(GraphicsContext gc, double[] boardPos, double boardScale, char[][] board, boolean[][] whiteOnBoard, boolean[][] blackOnBoard) {
@@ -247,23 +266,49 @@ public class Ur extends Application {
         Canvas canvas = new Canvas(canvasWidth, canvasHeight);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
+        // Resetting board pieces
+        blackOnBoard = new boolean[8][3];
+        whiteOnBoard = new boolean[8][3];
+
+
+        // BEGIN-GAME-LOOP----------------------------------------------------------------------------------------------
+
+        /*
+         MOVING PIECES:
+
+         To simply place a piece on the board, use the following:
+         whiteOnBoard[x][y] = true;
+
+         To move a piece along its path by a specific number of spaces, use the following:
+         int[] start = new int[] {startX, startY}
+         movePiece(start, numSpaces);
+
+         Note to Developer:
+         - You cannot move a piece if it is outside its path
+         - Because of this, you shouldn't place a piece outside its path to begin with
+         */
+
         // Initializing and starting the game loop
         final long startNanoTime = System.nanoTime();
 
-        // TEST - REMOVE THIS LATER
-        whiteOnBoard[3][2] = true;
-        blackOnBoard[3][0] = true;
-
         new AnimationTimer() {
             @Override
-            // This method is repeated 60 times every second
+            // GAME LOOP
             public void handle(long currentNanoTime) {
+                // Getting time in seconds; useful for animations
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+
+                // Resetting the canvas before drawing
                 gc.setFill(Color.BLACK);
                 gc.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                // Drawing the board & pieces
                 drawBoard(gc, new double[] {50, 50}, 87.5, board, whiteOnBoard, blackOnBoard);
             }
         }.start();
+
+        // END-GAME-LOOP------------------------------------------------------------------------------------------------
+
 
         // Back button; navigates to the main menu
         Button toMenu = new Button("Back");
