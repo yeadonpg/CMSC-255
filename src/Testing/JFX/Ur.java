@@ -23,6 +23,8 @@ public class Ur extends Application {
     // Window width and height
     private static int WIDTH = 800;
     private static int HEIGHT = 600;
+    private static int BOARD_WIDTH = 8;
+    private static int BOARD_HEIGHT = 3;
 
     // Getting images
     private static Image ROSETTE = new Image(Ur.class.getResourceAsStream("rosette_space.png"));
@@ -30,13 +32,118 @@ public class Ur extends Application {
     private static Image WHITE = new Image(Ur.class.getResourceAsStream("white_piece.png"));
     private static Image BLACK = new Image(Ur.class.getResourceAsStream("black_piece.png"));
 
+    // Declaring the game board
+    private static char[][] board = {
+            /*
+            'r' = Rosette Space
+            'e' = Empty (Plain) Space
+            'n' = Not part of the board
+             */
+            {'r', 'e', 'r'},
+            {'e', 'e', 'e'},
+            {'e', 'e', 'e'},
+            {'e', 'r', 'e'},
+            {'n', 'e', 'n'},
+            {'n', 'e', 'n'},
+            {'r', 'e', 'r'},
+            {'e', 'e', 'e'}
+    };
+
+    // Declaring game piece paths
+    private static int[][] blackPath = {
+            // Path that black pieces follow
+            {3, 0}, {2, 0}, {1, 0}, {0, 0},
+            {0, 1}, {1, 1}, {2, 1}, {3, 1},
+            {4, 1}, {5, 1}, {6, 1}, {7, 1},
+            {7, 0}, {6, 0}
+    };
+    private static int[][] whitePath = {
+            // Path that white pieces follow
+            {3, 2}, {2, 2}, {1, 2}, {0, 2},
+            {0, 1}, {1, 1}, {2, 1}, {3, 1},
+            {4, 1}, {5, 1}, {6, 1}, {7, 1},
+            {7, 2}, {6, 2}
+    };
+
+    // Initializing class-wide variables
+    private static boolean[][] blackOnBoard = new boolean[8][3]; // Coordinates of each white piece on the board
+    private static boolean[][] whiteOnBoard = new boolean[8][3]; // Coordinates of each black piece on the board
+
     public static void main(String[] args) {
         launch(args);
     }
 
+    private static int findPositionInPath(int[][] path, int[] positionToFind) {
+        for (int i = 0; i < path.length; i++) {
+            if (positionToFind == path[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private static void movePiece(int[] currentSpace, int numSpaces) {
+        int[] nextSpace;
+        int nextSpaceIndex;
+        if (whiteOnBoard[currentSpace[0]][currentSpace[1]]) { // Moving white piece
+            // Declaring the desired space to move to
+            nextSpaceIndex = findPositionInPath(whitePath, currentSpace) + numSpaces;
+            if (nextSpaceIndex == -1) {
+                return;
+            }
+            nextSpace = whitePath[nextSpaceIndex];
+            System.out.println("[WHITE] Attempting to move:\nFROM: " + currentSpace + "\nTO: " + nextSpace);
+            if (blackOnBoard[nextSpace[0]][nextSpace[1]]) {
+                if (board[nextSpace[0]][nextSpace[1]] == 'r') {
+                    System.out.println("[WHITE] Cannot land on occupied rosette");
+                    return;
+                }
+                System.out.println("[WHITE] Landing on BLACK");
+
+                // Kicking the piece off the board
+                blackOnBoard[nextSpace[0]][nextSpace[1]] = false;
+
+            } else if (whiteOnBoard[nextSpace[0]][nextSpace[1]]) {
+                System.out.println("[WHITE] Cannot land on same team");
+                return;
+            }
+
+            // Performing the action of moving the piece
+            whiteOnBoard[currentSpace[0]][currentSpace[1]] = false;
+            whiteOnBoard[nextSpace[0]][nextSpace[1]] = true;
+
+        } else if (blackOnBoard[currentSpace[0]][currentSpace[1]]) { // Moving black piece
+            // Declaring the desired space to move to
+            nextSpaceIndex = findPositionInPath(blackPath, currentSpace) + numSpaces;
+            if (nextSpaceIndex == -1) {
+                return;
+            }
+            nextSpace = blackPath[nextSpaceIndex];
+            System.out.println("[BLACK] Attempting to move:\nFROM: " + currentSpace + "\nTO: " + nextSpace);
+            if (whiteOnBoard[nextSpace[0]][nextSpace[1]]) {
+                if (board[nextSpace[0]][nextSpace[1]] == 'r') {
+                    System.out.println("[BLACK] Cannot land on occupied rosette");
+                    return;
+                }
+                System.out.println("[BLACK] Landing on WHITE");
+
+                // Kicking the piece off the board
+                whiteOnBoard[nextSpace[0]][nextSpace[1]] = false;
+
+            } else if (blackOnBoard[nextSpace[0]][nextSpace[1]]) {
+                System.out.println("[BLACK] Cannot land on same team");
+                return;
+            }
+
+            // Performing the action of moving the piece
+            blackOnBoard[currentSpace[0]][currentSpace[1]] = false;
+            blackOnBoard[nextSpace[0]][nextSpace[1]] = true;
+        }
+    }
+
     private static void drawBoard(GraphicsContext gc, double[] boardPos, double boardScale, char[][] board, boolean[][] whiteOnBoard, boolean[][] blackOnBoard) {
-        for (int j = 0; j <= 2; j++) {
-            for (int i = 0; i <= 7; i++) {
+        for (int j = 0; j < BOARD_HEIGHT; j++) {
+            for (int i = 0; i < BOARD_WIDTH; i++) {
                 switch (board[i][j]) {
                     case 'e':
                         gc.drawImage(EMPTY, boardPos[0] + (i * boardScale), boardPos[1] + (j * boardScale), boardScale, boardScale);
@@ -142,60 +249,11 @@ public class Ur extends Application {
 
         // Initializing and starting the game loop
         final long startNanoTime = System.nanoTime();
-        double[][] whitePath = { // Path that white pieces follow
-                {3, 2}, // Start
-                {2, 2},
-                {1, 2},
-                {0, 2},
-                {0, 1},
-                {1, 1},
-                {2, 1},
-                {3, 1},
-                {4, 1},
-                {5, 1},
-                {6, 1},
-                {7, 1},
-                {7, 2},
-                {6, 2} // End
-        };
-        double[][] blackPath = { // Path that black pieces follow
-                {3, 0}, // Start
-                {2, 0},
-                {1, 0},
-                {0, 0},
-                {0, 1},
-                {1, 1},
-                {2, 1},
-                {3, 1},
-                {4, 1},
-                {5, 1},
-                {6, 1},
-                {7, 1},
-                {7, 0},
-                {6, 0} // End
-        };
-        boolean[][] blackOnBoard = new boolean[8][3];
-        boolean[][] whiteOnBoard = new boolean[8][3];
 
         // TEST - REMOVE THIS LATER
-        blackOnBoard[2][1] = true;
-        whiteOnBoard[4][1] = true;
+        whiteOnBoard[3][2] = true;
+        blackOnBoard[3][0] = true;
 
-        char[][] board = {
-                /*
-                'r' = Rosette Space
-                'e' = Empty (Plain) Space
-                'n' = Not part of the board
-                 */
-                {'r', 'e', 'r'},
-                {'e', 'e', 'e'},
-                {'e', 'e', 'e'},
-                {'e', 'r', 'e'},
-                {'n', 'e', 'n'},
-                {'n', 'e', 'n'},
-                {'r', 'e', 'r'},
-                {'e', 'e', 'e'}
-        };
         new AnimationTimer() {
             @Override
             // This method is repeated 60 times every second
