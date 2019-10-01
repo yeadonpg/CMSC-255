@@ -1,0 +1,7 @@
+BEGIN ALGORITHM
+
+WHILE (userAnswer != "quit"):
+
+END WHILE
+
+END ALGORITHM
