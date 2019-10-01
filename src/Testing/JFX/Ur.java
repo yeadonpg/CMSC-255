@@ -31,6 +31,7 @@ public class Ur extends Application {
     private static Image EMPTY = new Image(Ur.class.getResourceAsStream("empty_space.png"));
     private static Image WHITE = new Image(Ur.class.getResourceAsStream("white_piece.png"));
     private static Image BLACK = new Image(Ur.class.getResourceAsStream("black_piece.png"));
+    private static Image SHADOW = new Image(Ur.class.getResourceAsStream("piece_shadow.png"));
 
     // Declaring the game board
     private static char[][] board = {
@@ -76,12 +77,16 @@ public class Ur extends Application {
     private static int findPositionInPath(int[][] path, int[] positionToFind) {
         for (int i = 0; i < path.length; i++) {
             if (path[i][0] == positionToFind[0] && path[i][1] == positionToFind[1]) {
-                System.out.println("[UR] Found starting position: " + path[i][0] + ", " + path[i][1]);
+                System.out.println("[UR] Found position: " + path[i][0] + ", " + path[i][1]);
                 return i;
             }
         }
         System.out.println("[UR] Board position " + positionToFind[0] + ", " + positionToFind[1] + " not found");
         return -1;
+    }
+
+    private static void performMoveAnimation(int[] currentSpace, int numSpaces) {
+        int[][] spacesToJump = new int[numSpaces][2];
     }
 
     private static void movePiece(int[] currentSpace, int numSpaces) {
@@ -119,6 +124,8 @@ public class Ur extends Application {
 
             // Performing the action of moving the piece
             whiteOnBoard[currentSpace[0]][currentSpace[1]] = false;
+            // TODO Complete the piece movement animation
+            // performMoveAnimation();
             whiteOnBoard[nextSpace[0]][nextSpace[1]] = true;
             System.out.println("[WHITE] Completed jump successfully");
 
@@ -154,6 +161,8 @@ public class Ur extends Application {
 
             // Performing the action of moving the piece
             blackOnBoard[currentSpace[0]][currentSpace[1]] = false;
+            // TODO Complete the piece movement animation
+            // performMoveAnimation();
             blackOnBoard[nextSpace[0]][nextSpace[1]] = true;
             System.out.println("[BLACK] Completed jump successfully");
         }
@@ -270,6 +279,12 @@ public class Ur extends Application {
         blackOnBoard = new boolean[8][3];
         whiteOnBoard = new boolean[8][3];
 
+        // Setting up pieces - TESTING - REMOVE THIS LATER
+
+        whiteOnBoard[2][2] = true;
+        blackOnBoard[2][1] = true;
+
+         movePiece(new int[] {2, 2}, 5);
 
         // BEGIN-GAME-LOOP----------------------------------------------------------------------------------------------
 
