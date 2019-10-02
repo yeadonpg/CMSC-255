@@ -13,18 +13,18 @@ package Project_4;
 import java.util.Scanner;
 
 public class TempConvert {
-    public static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
         String userAnswer = "";
         do {
-            processData();
+            processData(in);
             System.out.println("Do you want to convert another temperature amount? Enter quit to exit.");
             userAnswer = in.nextLine();
         } while (!userAnswer.equals("quit"));
     }
 
-    public static void processData() {
+    public static void processData(Scanner in) {
         System.out.println("Enter the temperature to convert:");
         double userTemp = in.nextInt();
         in.nextLine();
