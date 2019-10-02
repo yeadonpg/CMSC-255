@@ -85,8 +85,13 @@ public class Ur extends Application {
         return -1;
     }
 
+    private static void cubicInterpolate(x1, x2) {
+
+    }
+
     private static void performMoveAnimation(int[] currentSpace, int numSpaces) {
-        int[][] spacesToJump = new int[numSpaces][2];
+        // Cubic interpolate the distance between the starting and ending position
+        // Move the piece along that path over a set time
     }
 
     private static void movePiece(int[] currentSpace, int numSpaces) {
