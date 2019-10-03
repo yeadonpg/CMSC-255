@@ -25,6 +25,7 @@ public class Ur extends Application {
     private static int HEIGHT = 600;
     private static int BOARD_WIDTH = 8;
     private static int BOARD_HEIGHT = 3;
+    private static double BOARD_SCALE = 87.5;
 
     // Getting images
     private static Image ROSETTE = new Image(Ur.class.getResourceAsStream("rosette_space.png"));
@@ -85,8 +86,25 @@ public class Ur extends Application {
         return -1;
     }
 
+    private static double cosineInterpolate(double x1, double x2, double mu) {
+        double mu2;
+
+        mu2 = (1-Math.cos(mu * Math.PI))/2;
+        return (x1 * (1-mu2) + x2 * mu2);
+    }
+
     private static void performMoveAnimation(int[] currentSpace, int numSpaces) {
-        int[][] spacesToJump = new int[numSpaces][2];
+        int[][] path;
+        if (whiteOnBoard[currentSpace[0]][currentSpace[1]]) {
+            path = whitePath;
+        } else if (blackOnBoard[currentSpace[0]][currentSpace[1]]) {
+            path = blackPath;
+        } else {
+            return;
+        }
+        int currentSpaceIndex = findPositionInPath(path, currentSpace);
+        int nextSpaceIndex = currentSpaceIndex + numSpaces;
+        int[] nextSpace = path[nextSpaceIndex];
     }
 
     private static void movePiece(int[] currentSpace, int numSpaces) {
@@ -169,27 +187,55 @@ public class Ur extends Application {
         System.out.println("-----------------------------------");
     }
 
-    private static void drawBoard(GraphicsContext gc, double[] boardPos, double boardScale, char[][] board, boolean[][] whiteOnBoard, boolean[][] blackOnBoard) {
+    private static void drawBoard(GraphicsContext gc, double[] boardPos) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
             for (int i = 0; i < BOARD_WIDTH; i++) {
                 switch (board[i][j]) {
                     case 'e':
-                        gc.drawImage(EMPTY, boardPos[0] + (i * boardScale), boardPos[1] + (j * boardScale), boardScale, boardScale);
+                        gc.drawImage(EMPTY, boardPos[0] + (i * BOARD_SCALE), boardPos[1] + (j * BOARD_SCALE), BOARD_SCALE, BOARD_SCALE);
                         break;
                     case 'r':
-                        gc.drawImage(ROSETTE, boardPos[0] + (i * boardScale), boardPos[1] + (j * boardScale), boardScale, boardScale);
+                        gc.drawImage(ROSETTE, boardPos[0] + (i * BOARD_SCALE), boardPos[1] + (j * BOARD_SCALE), BOARD_SCALE, BOARD_SCALE);
                         break;
                 }
                 if (whiteOnBoard[i][j]) {
-                    gc.drawImage(WHITE, boardPos[0] + (i * boardScale), boardPos[1] + (j * boardScale), boardScale, boardScale);
+                    gc.drawImage(WHITE, boardPos[0] + (i * BOARD_SCALE), boardPos[1] + (j * BOARD_SCALE), BOARD_SCALE, BOARD_SCALE);
                 } else if (blackOnBoard[i][j]) {
-                    gc.drawImage(BLACK, boardPos[0] + (i * boardScale), boardPos[1] + (j * boardScale), boardScale, boardScale);
+                    gc.drawImage(BLACK, boardPos[0] + (i * BOARD_SCALE), boardPos[1] + (j * BOARD_SCALE), BOARD_SCALE, BOARD_SCALE);
                 }
             }
         }
     }
 
     private static Scene createMainMenuScene(Stage stage) {
+
+        // Offset of the canvas in the scene
+        final double[] offset = {0, -25}; // x, y
+
+        // Initializing canvas and graphics context
+        final int canvasWidth = WIDTH + (int) offset[0];
+        final int canvasHeight = HEIGHT + (int) offset[1];
+        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+
+        final long startNanoTime = System.nanoTime();
+
+        new AnimationTimer() {
+            @Override
+            // MENU SCREEN
+            public void handle(long currentNanoTime) {
+                // Getting time in seconds; useful for animations
+                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+
+                // Resetting the canvas before drawing
+                gc.setFill(Color.BLACK);
+                gc.fillRect(0, 0, canvasWidth, canvasHeight);
+
+                // TODO draw buttons
+                // TODO handle animations
+            }
+        }.start();
+
         final int buttonWidth = 75;
         // Start button; navigates to the game scene
         Button start = new Button("Start");
@@ -279,13 +325,6 @@ public class Ur extends Application {
         blackOnBoard = new boolean[8][3];
         whiteOnBoard = new boolean[8][3];
 
-        // Setting up pieces - TESTING - REMOVE THIS LATER
-
-        whiteOnBoard[2][2] = true;
-        blackOnBoard[2][1] = true;
-
-         movePiece(new int[] {2, 2}, 5);
-
         // BEGIN-GAME-LOOP----------------------------------------------------------------------------------------------
 
         /*
@@ -318,7 +357,12 @@ public class Ur extends Application {
                 gc.fillRect(0, 0, canvasWidth, canvasHeight);
 
                 // Drawing the board & pieces
-                drawBoard(gc, new double[] {50, 50}, 87.5, board, whiteOnBoard, blackOnBoard);
+                drawBoard(gc, new double[] {50, 50});
+
+                // TODO draw flippable coins
+                // TODO draw scoreboard
+                // TODO draw buttons
+                // TODO handle animations
             }
         }.start();
 
