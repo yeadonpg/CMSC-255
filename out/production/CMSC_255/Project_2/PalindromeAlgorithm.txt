@@ -1,0 +1,61 @@
+----------------------------------------------------------------------------------------------
+Patrick Yeadon
+Palindrome
+Algorithm to assess whether a number is a palindrome, with user interaction
+08-29-2019
+CMSC-255-001
+----------------------------------------------------------------------------------------------
+Overview of algorithm:
+- User INPUTS 1 or 2
+- If user has chosen 1, the user will INPUT a 3-digit number
+- The user's number will be validated
+- The first and last digit of the number are compared
+- Based on the comparison, the algorithm will OUTPUT whether or not the number is a palindrome
+----------------------------------------------------------------------------------------------
+BEGIN ALGORITHM
+
+number = 0 // Placeholder value
+
+correctAnswer = false
+
+PRINT "Enter 1 if you would like to enter a 3-digit number. Enter 2 if you would like to have the computer generate it."
+generateOrManual = INPUT
+
+IF generateOrManual == 1: // User chose to input manually
+    PRINT "Enter the 3-digit number:"
+    number = INPUT
+    
+    IF 99 < number < 1000: // Number is inside valid range
+        correctAnswer = true
+
+    ELSE // No valid answer was chosen for the 2nd question
+        PRINT "Incorrect Input"
+
+    END IF
+
+ELSE IF generateOrManual == 2: // User chose to let computer generate a 3-digit number
+    number = RandomIntegerBetween(100, 999)
+    PRINT number
+    correctAnswer = true
+
+ELSE: // No valid answer was chosen for the 1st question
+    PRINT "Incorrect Input"
+
+END IF
+
+// Convert integer to string to get 1st character, then convert back to integer
+firstDigit = |number|.toString()[0].toInteger()
+lastDigit = number % 10
+
+IF correctAnswer:
+    IF firstDigit == lastDigit:
+        PRINT number + " is a palindrome"
+
+    ELSE:
+        PRINT number + " is not a palindrome"
+
+    END IF
+
+END IF
+
+END ALGORITHM
