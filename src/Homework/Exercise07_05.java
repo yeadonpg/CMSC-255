@@ -41,8 +41,8 @@ public class Exercise07_05 {
 
     private static boolean contains(int[] arr, int val) {
         if (arr.length > 0) {
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i] == val) {
+            for (int elem : arr) {
+                if (elem == val) {
                     return true;
                 }
             }
