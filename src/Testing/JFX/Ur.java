@@ -27,6 +27,15 @@ public class Ur extends Application {
     private static int BOARD_HEIGHT = 3;
     private static double BOARD_SCALE = 87.5;
 
+    // Offset of the canvas in the scene
+    private static double[] offset = {0, -25}; // x, y
+
+    // Initializing canvas and graphics context
+    private static int canvasWidth = WIDTH + (int) offset[0];
+    private static int canvasHeight = HEIGHT + (int) offset[1];
+    private static Canvas canvas = new Canvas(canvasWidth, canvasHeight);
+    private static GraphicsContext gc = canvas.getGraphicsContext2D();
+
     // Getting images
     private static Image ROSETTE = new Image(Ur.class.getResourceAsStream("rosette_space.png"));
     private static Image EMPTY = new Image(Ur.class.getResourceAsStream("empty_space.png"));
@@ -100,11 +109,22 @@ public class Ur extends Application {
         } else if (blackOnBoard[currentSpace[0]][currentSpace[1]]) {
             path = blackPath;
         } else {
+            System.out.println("[UR] Specified space is not on a path");
             return;
         }
         int currentSpaceIndex = findPositionInPath(path, currentSpace);
         int nextSpaceIndex = currentSpaceIndex + numSpaces;
         int[] nextSpace = path[nextSpaceIndex];
+        // Interpolate between the spaces, and use an AnimationTimer to perform the animation
+        final long startNanoTime = System.nanoTime();
+        new AnimationTimer() {
+            @Override
+            public void handle(long currentNanoTime) {
+                // Getting time in seconds; useful for animations
+                double t = (currentNanoTime - startNanoTime) / 1000000000.0;
+                // TODO Perform Move Animation
+            }
+        }.start();
     }
 
     static void movePiece(int[] currentSpace, int numSpaces) {
@@ -272,9 +292,6 @@ public class Ur extends Application {
         // Initializing pane for game objects to exist in
         GridPane gameRoot = new GridPane();
 
-        // Offset of the canvas in the scene
-        final double[] offset = {0, -25}; // x, y
-
         // Setting up a method to record the mouse position
         final double[] mousePos = {0, 0}; // x, y
         // Configuring mouse position events
@@ -314,12 +331,6 @@ public class Ur extends Application {
                 mouseButtons[2] = mouseEvent.isSecondaryButtonDown();
             }
         });
-
-        // Initializing canvas and graphics context
-        final int canvasWidth = WIDTH + (int) offset[0];
-        final int canvasHeight = HEIGHT + (int) offset[1];
-        Canvas canvas = new Canvas(canvasWidth, canvasHeight);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // Resetting board pieces
         blackOnBoard = new boolean[8][3];
