@@ -107,7 +107,7 @@ public class Ur extends Application {
         int[] nextSpace = path[nextSpaceIndex];
     }
 
-    public static void movePiece(int[] currentSpace, int numSpaces) {
+    static void movePiece(int[] currentSpace, int numSpaces) {
         int[] nextSpace;
         int nextSpaceIndex;
         if (whiteOnBoard[currentSpace[0]][currentSpace[1]]) { // Moving white piece
