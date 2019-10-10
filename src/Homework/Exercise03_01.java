@@ -47,14 +47,14 @@ public class Exercise03_01
 
             if (discriminant > 0) // Two roots
             {
-                double r1 = (double) (-b + Math.pow(discriminant, 0.5)) / (double) (2 * a);
-                double r2 = (double) (-b - Math.pow(discriminant, 0.5)) / (double) (2 * a);
+                double r1 = (-b + Math.pow(discriminant, 0.5)) / (2 * a);
+                double r2 = (-b - Math.pow(discriminant, 0.5)) / (2 * a);
                 System.out.println("The system has two roots " + r1 + " and " + r2);
 
             }
             else if (discriminant == 0) // One root
             {
-                double r1 = (double) (-b + Math.pow(discriminant, 0.5)) / (double) (2 * a);
+                double r1 = (-b + Math.pow(discriminant, 0.5)) / (2 * a);
                 System.out.println("The system has one root " + r1);
 
             }

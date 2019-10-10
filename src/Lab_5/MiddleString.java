@@ -4,10 +4,7 @@ import java.util.Scanner;
 
 public class MiddleString {
     private static boolean isMiddle(String word1, String word2, String word3) {
-        if ((word1.compareTo(word2) <= 0 && word2.compareTo(word3) <= 0) || (word3.compareTo(word2) <= 0 && word2.compareTo(word1) <= 0)) {
-            return true;
-        }
-        return false;
+        return (word1.compareTo(word2) <= 0 && word2.compareTo(word3) <= 0) || (word3.compareTo(word2) <= 0 && word2.compareTo(word1) <= 0);
     }
 
     public static void main(String[] args) {

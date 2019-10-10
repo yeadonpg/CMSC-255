@@ -167,14 +167,11 @@ public class TempConvert {
     public static boolean checkValidity(double temp, String scale) {
         switch (scale) {
             case "Fahrenheit":
-                if (temp >= -479.4 && temp <= 1000) {return true;}
-                return false;
+                return temp >= -479.4 && temp <= 1000;
             case "Celsius":
-                if (temp >= -273 && temp <= 1000) {return true;}
-                return false;
+                return temp >= -273 && temp <= 1000;
             case "Kelvin":
-                if (temp >= 0 && temp <= 1000) {return true;}
-                return false;
+                return temp >= 0 && temp <= 1000;
             default:
                 return false;
         }

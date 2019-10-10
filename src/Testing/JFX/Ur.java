@@ -21,21 +21,21 @@ import java.awt.*;
 
 public class Ur extends Application {
     // Window width and height
-    private static int WIDTH = 800;
-    private static int HEIGHT = 600;
-    private static int BOARD_WIDTH = 8;
-    private static int BOARD_HEIGHT = 3;
-    private static double BOARD_SCALE = 87.5;
+    public static int WIDTH = 800;
+    public static int HEIGHT = 600;
+    public static int BOARD_WIDTH = 8;
+    public static int BOARD_HEIGHT = 3;
+    public static double BOARD_SCALE = 87.5;
 
     // Getting images
-    private static Image ROSETTE = new Image(Ur.class.getResourceAsStream("rosette_space.png"));
-    private static Image EMPTY = new Image(Ur.class.getResourceAsStream("empty_space.png"));
-    private static Image WHITE = new Image(Ur.class.getResourceAsStream("white_piece.png"));
-    private static Image BLACK = new Image(Ur.class.getResourceAsStream("black_piece.png"));
-    private static Image SHADOW = new Image(Ur.class.getResourceAsStream("piece_shadow.png"));
+    public static Image ROSETTE = new Image(Ur.class.getResourceAsStream("rosette_space.png"));
+    public static Image EMPTY = new Image(Ur.class.getResourceAsStream("empty_space.png"));
+    public static Image WHITE = new Image(Ur.class.getResourceAsStream("white_piece.png"));
+    public static Image BLACK = new Image(Ur.class.getResourceAsStream("black_piece.png"));
+    public static Image SHADOW = new Image(Ur.class.getResourceAsStream("piece_shadow.png"));
 
     // Declaring the game board
-    private static char[][] board = {
+    public static char[][] board = {
             /*
             'r' = Rosette Space
             'e' = Empty (Plain) Space
@@ -52,14 +52,14 @@ public class Ur extends Application {
     };
 
     // Declaring game piece paths
-    private static int[][] blackPath = {
+    public static int[][] blackPath = {
             // Path that black pieces follow
             {3, 0}, {2, 0}, {1, 0}, {0, 0},
             {0, 1}, {1, 1}, {2, 1}, {3, 1},
             {4, 1}, {5, 1}, {6, 1}, {7, 1},
             {7, 0}, {6, 0}
     };
-    private static int[][] whitePath = {
+    public static int[][] whitePath = {
             // Path that white pieces follow
             {3, 2}, {2, 2}, {1, 2}, {0, 2},
             {0, 1}, {1, 1}, {2, 1}, {3, 1},
@@ -68,8 +68,8 @@ public class Ur extends Application {
     };
 
     // Initializing class-wide variables
-    private static boolean[][] blackOnBoard = new boolean[8][3]; // Coordinates of each white piece on the board
-    private static boolean[][] whiteOnBoard = new boolean[8][3]; // Coordinates of each black piece on the board
+    public static boolean[][] blackOnBoard = new boolean[8][3]; // Coordinates of each white piece on the board
+    public static boolean[][] whiteOnBoard = new boolean[8][3]; // Coordinates of each black piece on the board
 
     public static void main(String[] args) {
         launch(args);
@@ -86,14 +86,14 @@ public class Ur extends Application {
         return -1;
     }
 
-    private static double cosineInterpolate(double x1, double x2, double mu) {
+    public static double cosineInterpolate(double x1, double x2, double mu) {
         double mu2;
 
         mu2 = (1-Math.cos(mu * Math.PI))/2;
         return (x1 * (1-mu2) + x2 * mu2);
     }
 
-    private static void performMoveAnimation(int[] currentSpace, int numSpaces) {
+    public static void performMoveAnimation(int[] currentSpace, int numSpaces) {
         int[][] path;
         if (whiteOnBoard[currentSpace[0]][currentSpace[1]]) {
             path = whitePath;
@@ -107,7 +107,7 @@ public class Ur extends Application {
         int[] nextSpace = path[nextSpaceIndex];
     }
 
-    private static void movePiece(int[] currentSpace, int numSpaces) {
+    public static void movePiece(int[] currentSpace, int numSpaces) {
         int[] nextSpace;
         int nextSpaceIndex;
         if (whiteOnBoard[currentSpace[0]][currentSpace[1]]) { // Moving white piece
@@ -187,7 +187,7 @@ public class Ur extends Application {
         System.out.println("-----------------------------------");
     }
 
-    private static void drawBoard(GraphicsContext gc, double[] boardPos) {
+    public static void drawBoard(GraphicsContext gc, double[] boardPos) {
         for (int j = 0; j < BOARD_HEIGHT; j++) {
             for (int i = 0; i < BOARD_WIDTH; i++) {
                 switch (board[i][j]) {
