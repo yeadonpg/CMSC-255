@@ -7,9 +7,7 @@ public class Array {
         String[] tokens = args[0].split(",");
         String[] customerName = new String[7];
 
-        for (int i = 0; i < tokens.length; i++) {
-            customerName[i] = tokens[i];
-        }
+        System.arraycopy(tokens, 0, customerName, 0, tokens.length);
 
         printArr(customerName);
 
@@ -27,24 +25,24 @@ public class Array {
 
     }
 
-    public static void printArr(String[] arr) {
+    private static void printArr(String[] arr) {
         for (String elem : arr) {
             System.out.println(elem);
         }
         System.out.println("");
     }
 
-    public static void moveElem(String[] arr, int staIndex, int destIndex) {
+    private static void moveElem(String[] arr, int staIndex, int destIndex) {
         String temp = arr[staIndex];
         arr[staIndex] = arr[destIndex];
         arr[destIndex] = temp;
     }
 
-    public static void copyElemOver(String[] arr, int staIndex, int destIndex) {
+    private static void copyElemOver(String[] arr, int staIndex, int destIndex) {
         arr[destIndex] = arr[staIndex];
     }
 
-    public static void removeItemAtIndex(String[] arr, String elem) {
+    private static void removeItemAtIndex(String[] arr, String elem) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] != null && arr[i].equals(elem)) {
                 arr[i] = null;
@@ -57,11 +55,11 @@ public class Array {
         }
     }
 
-    public static String[] reverse(String[] arr) {
+    private static String[] reverse(String[] arr) {
         String[] newArr = new String[arr.length];
         int j = arr.length - 1;
-        for (int i = 0; i < arr.length; i++) {
-            newArr[j] = arr[i];
+        for (String s : arr) {
+            newArr[j] = s;
             j--;
         }
         return newArr;
