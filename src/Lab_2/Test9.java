@@ -5,7 +5,7 @@ public class Test9
       System.out.println();      
 			System.out.println();      
 			System.out.println("Here's a cute octopus for you to enjoy.");      
-      System.out.println("");      
+      System.out.println();
       System.out.println("                      ___");      
       System.out.println("                   .-'   `'.");   
       System.out.println("                  /        \\ "); 
