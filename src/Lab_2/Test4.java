@@ -1,3 +1,5 @@
+package Lab_2;
+
 public class Test4
 {
 

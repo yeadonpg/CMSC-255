@@ -7,9 +7,11 @@ Patrick Yeadon
 CMSC-255-001
 */
 
+package Lab_1;
+
 public class Hello
 {
-    public static void printHeading()
+    private static void printHeading()
     {
         System.out.println("Patrick Yeadon");
         System.out.println("Hello");

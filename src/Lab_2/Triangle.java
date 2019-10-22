@@ -1,4 +1,6 @@
-public class Triangle 
+package Lab_2;
+
+public class Triangle
 {
     public static void main(String[] args) 
     {
