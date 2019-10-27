@@ -73,22 +73,16 @@ public class TravelDistances {
     public static String[] searchDistance(int[][] distances, String[] cities, boolean aboveVal, int aDistance, String aCity) {
         String[] output = new String[0];
         int aCityIndex = getIndex(cities, aCity);
-        if (aboveVal) {
 
-            for (int i = 0, j = 0; i < cities.length; i++) {
-                int distance = distances[aCityIndex][i];
-
+        for (int i = 0, j = 0; i < cities.length; i++) {
+            int distance = distances[aCityIndex][i];
+            if (aboveVal) {
                 if (distance >= aDistance && !cities[i].equals(aCity)) {
                     output = copyOf(output, output.length + 1);
                     output[j] = cities[i];
                     j++;
                 }
-            }
-        } else {
-
-            for (int i = 0, j = 0; i < cities.length; i++) {
-                int distance = distances[aCityIndex][i];
-
+            } else {
                 if (distance <= aDistance && !cities[i].equals(aCity)) {
                     output = copyOf(output, output.length + 1);
                     output[j] = cities[i];
@@ -96,6 +90,7 @@ public class TravelDistances {
                 }
             }
         }
+
         return output;
     }
 
