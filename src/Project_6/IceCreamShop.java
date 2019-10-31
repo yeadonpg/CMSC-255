@@ -23,7 +23,7 @@ public class IceCreamShop {
 
         zach.orderIceCream(zachOrder);
 
-        System.out.print(caroline.toString());
-        System.out.print(zach.toString());
+        System.out.println(caroline.toString());
+        System.out.println(zach.toString());
     }
 }
