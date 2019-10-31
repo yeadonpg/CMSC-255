@@ -3,10 +3,6 @@ package Project_6;
 
 import org.junit.Test;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-
 import static org.junit.Assert.*;
 
 public class EnumTests {

@@ -1,6 +1,6 @@
 package Project_6;
 
-enum Topping {
+public enum Topping {
     NONE,
     SPRINKLES,
     NUTS,

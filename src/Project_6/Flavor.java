@@ -1,6 +1,6 @@
 package Project_6;
 
-enum Flavor {
+public enum Flavor {
     VANILLA,
     CHOCOLATE,
     ROCKY_ROAD,

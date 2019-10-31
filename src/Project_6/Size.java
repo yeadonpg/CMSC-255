@@ -1,6 +1,6 @@
 package Project_6;
 
-enum Size {
+public enum Size {
     SINGLE,
     DOUBLE,
     TRIPLE,

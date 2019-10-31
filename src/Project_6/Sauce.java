@@ -1,6 +1,6 @@
 package Project_6;
 
-enum Sauce {
+public enum Sauce {
     NONE,
     HOT_FUDGE,
     CARAMEL,
