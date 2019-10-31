@@ -1,100 +1,80 @@
 package Project_6;
 
-enum Size {
-    SINGLE,
-    DOUBLE,
-    TRIPLE,
-    SUNDAE
-}
-
-enum Flavor {
-    VANILLA,
-    CHOCOLATE,
-    ROCKY_ROAD,
-    STRAWBERRY,
-    MINT_CHOCOLATE_CHIP,
-    OREO,
-    BUTTER_PECAN
-}
-
-enum Sauce {
-    NONE,
-    HOT_FUDGE,
-    CARAMEL,
-    STRAWBERRY
-}
-
-enum Topping {
-    NONE,
-    SPRINKLES,
-    NUTS,
-    CHOCOLATE_FLAKES,
-    GUMMIES,
-    CANDY
-}
-
-enum ToppingSun {
-    NONE,
-    WHIPPED_CREAM_AND_CHERRY
-}
-
 public class IceCream {
 
-    private Size SIZE;
-    private Flavor FLAVOR;
-    private Sauce SAUCE;
-    private Topping TOPPING;
-    private ToppingSun TOPPINGSUN;
+    private Size size;
+    private Flavor flavor;
+    private Sauce sauce;
+    private Topping topping;
+    private ToppingSun toppingSun;
 
-    public IceCream(Size size) {
-        SIZE = size;
-        FLAVOR = Flavor.VANILLA;
-        SAUCE = Sauce.NONE;
-        TOPPING = Topping.NONE;
-        if (SIZE == Size.SUNDAE) {
-            TOPPINGSUN = ToppingSun.WHIPPED_CREAM_AND_CHERRY;
+    public IceCream() {
+        size = Size.SINGLE;
+        flavor = Flavor.VANILLA;
+        sauce = Sauce.NONE;
+        topping = Topping.NONE;
+        toppingSun = ToppingSun.NONE;
+    }
+
+    public IceCream(Size aSize) {
+        size = aSize;
+        flavor = Flavor.VANILLA;
+        sauce = Sauce.NONE;
+        topping = Topping.NONE;
+        if (size == Size.SUNDAE) {
+            toppingSun = ToppingSun.WHIPPED_CREAM_AND_CHERRY;
         } else {
-            TOPPINGSUN = ToppingSun.NONE;
+            toppingSun = ToppingSun.NONE;
         }
     }
 
     public Size getSize() {
-        return SIZE;
+        return size;
     }
 
     public void setSize(Size aSize) {
-        SIZE = aSize;
+        size = aSize;
     }
 
     public Flavor getFlavor() {
-        return FLAVOR;
+        return flavor;
     }
 
     public void setFlavor(Flavor aFlavor) {
-        FLAVOR = aFlavor;
+        flavor = aFlavor;
     }
 
     public Sauce getSauce() {
-        return SAUCE;
+        return sauce;
     }
 
     public void setSauce(Sauce aSauce) {
-        SAUCE = aSauce;
+        sauce = aSauce;
     }
 
     public Topping getTopping() {
-        return TOPPING;
+        return topping;
     }
 
     public void setTopping(Topping aTopping) {
-        TOPPING = aTopping;
+        topping = aTopping;
     }
 
     public ToppingSun getToppingSun() {
-        return TOPPINGSUN;
+        return toppingSun;
     }
 
     public void setToppingSun(ToppingSun aToppingSun) {
-        TOPPINGSUN = aToppingSun;
+        toppingSun = aToppingSun;
+    }
+
+    public String toString() {
+        String output = "\n";
+        output += String.format("\t%s\n", getSize());
+        output += String.format("\t%s\n", getFlavor());
+        output += String.format("\t%s\n", getSauce());
+        output += String.format("\t%s\n", getTopping());
+        output += String.format("\t%s\n", getToppingSun());
+        return output;
     }
 }

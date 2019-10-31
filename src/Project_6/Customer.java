@@ -9,11 +9,20 @@ public class Customer {
     private String email;
     private ArrayList<IceCream> iceCream;
 
+    public Customer() {
+        lastName = null;
+        firstName = null;
+        phone = null;
+        email = null;
+        iceCream = new ArrayList<>();
+    }
+
     public Customer(String aLastName, String aFirstName, String aPhone, String anEmail) {
         lastName = aLastName;
         firstName = aFirstName;
         phone = aPhone;
         email = anEmail;
+        iceCream = new ArrayList<>();
     }
 
     public void orderIceCream(IceCream anIceCream) {
@@ -56,19 +65,18 @@ public class Customer {
         email = anEmail;
     }
 
+    public int getNumIceCream() {
+        return iceCream.size();
+    }
+
     public String toString() {
         String output = "";
         output += firstName + " " + lastName + "\n";
         output += phone + "\n";
         output += email + "\n";
         output += "Ice Cream Order:\n";
-        for (IceCream elem : iceCream) {
-            output += "\t" + elem.getSize() + "\n";
-            output += "\t" + elem.getFlavor() + "\n";
-            output += "\t" + elem.getSauce() + "\n";
-            output += "\t" + elem.getTopping() + "\n";
-            output += "\t" + elem.getToppingSun() + "\n";
-            output += "\n";
+        for (int i = 0; i < getNumIceCream(); i++) {
+            output += iceCream.get(i).toString();
         }
         return output;
     }
