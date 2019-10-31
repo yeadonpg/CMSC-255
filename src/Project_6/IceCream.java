@@ -1,5 +1,6 @@
 package Project_6;
 
+@SuppressWarnings("WeakerAccess")
 public class IceCream {
 
     private Size size;

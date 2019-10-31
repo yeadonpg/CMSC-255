@@ -2,6 +2,7 @@ package Project_6;
 
 import java.util.ArrayList;
 
+@SuppressWarnings("WeakerAccess")
 public class Customer {
     private String firstName;
     private String lastName;
@@ -70,14 +71,14 @@ public class Customer {
     }
 
     public String toString() {
-        String output = "";
-        output += firstName + " " + lastName + "\n";
-        output += phone + "\n";
-        output += email + "\n";
-        output += "Ice Cream Order:\n";
+        StringBuilder output = new StringBuilder();
+        output.append(firstName).append(" ").append(lastName).append("\n");
+        output.append(phone).append("\n");
+        output.append(email).append("\n");
+        output.append("Ice Cream Order:\n");
         for (int i = 0; i < getNumIceCream(); i++) {
-            output += iceCream.get(i).toString();
+            output.append(iceCream.get(i).toString());
         }
-        return output;
+        return output.toString();
     }
 }
