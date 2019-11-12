@@ -32,7 +32,7 @@
 - Lab 12: [Polymorphism](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_12)
 
 ## 3) Projects:
-###### Description: Some earlier labs may lack modern documentation
+###### Description: Most labs lack modern documentation
 ###### Note: [See individual docs for more information](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects)
 - Project 1: [NameArt](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_1/NameArt.java)
 - Project 2: [Palindrome](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_2/Palindrome.java)
