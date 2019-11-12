@@ -1,6 +1,6 @@
 # CMSC-255
-##### Everything java-related to CMSC 255, which turned out to be pretty much everything, seeing as it's an Introduction to Java class...
-##### This repo is in the format of an IntelliJ IDEA project; all .class files can be found in the src directory
+###### All java-related files for my CMSC 255 class, Introduction to Programming
+###### This repo is in the format of an IntelliJ IDEA project; all .class files can be found in the src directory
 
 # TODO:
 ###### Description: Tasks needed to be performed to achieve a more organized repository. Remove this section when done.
@@ -12,9 +12,9 @@
 # Table of Contents:
 
 ## 1) Homework:
-###### Description: Hodge-Podge of homework projects; many of the earlier ones are undocumented.<br>
-Homework files are named by the following scheme:<br>
-<code>Exercise[Chapter Number]_[Exercise Number].class</code>
+###### Description: Hodge-Podge of homework projects; many of the earlier ones are undocumented.
+###### Homework files are named by the following scheme:
+<code>Exercise[Chapter Number]_[Exercise Number].java</code>
 ###### Note: [See individual docs for more information](https://github.com/yeadonpg/CMSC-255/tree/master/src/Homework)
 
 ## 2) Labs:
