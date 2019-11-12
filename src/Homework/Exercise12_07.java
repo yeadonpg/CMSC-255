@@ -7,6 +7,7 @@ import java.util.Scanner;
  * Write a program to parse a string that contains a binary number.
  * If the string doesn't contain a binary number, print "Not a binary number: <numberInput>"
  * **/
+@SuppressWarnings("WeakerAccess")
 public class Exercise12_07 {
 
     public static void main(String[] args) {
