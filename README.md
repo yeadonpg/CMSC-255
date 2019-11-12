@@ -34,12 +34,12 @@
 ## 3) Projects:
 ###### Description: Some earlier labs may lack modern documentation
 ###### Note: [See individual docs for more information](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects)
-- Project 1: [NameArt]()
-- Project 2: [Palindrome]()
-- Project 3: [TriCircleSign]()
-- Project 4: [TempConvert]()
-- Project 5: [TravelDistances]()
-- Project 6: [Ice Cream Shop]()
+- Project 1: [NameArt](https://github.com/yeadonpg/CMSC-255/blob/master/src/Projects/Project_1/NameArt.java)
+- Project 2: [Palindrome](https://github.com/yeadonpg/CMSC-255/blob/master/src/Projects/Project_2/Palindrome.java)
+- Project 3: [TriCircleSign](https://github.com/yeadonpg/CMSC-255/blob/master/src/Projects/Project_3/TriCircleSign.java)
+- Project 4: [TempConvert](https://github.com/yeadonpg/CMSC-255/blob/master/src/Projects/Project_4/TempConvert.java)
+- Project 5: [TravelDistances](https://github.com/yeadonpg/CMSC-255/blob/master/src/Projects/Project_5/TravelDistances.java)
+- Project 6: [Ice Cream Shop](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_6)
 
 ## 4) Testing
 ###### Description: Testing out ideas for larger projects; once an idea is well-formed, it is moved into a new repo
