@@ -1,5 +1,6 @@
 # CMSC-255
 ##### Everything java-related to CMSC 255, which turned out to be pretty much everything, seeing as it's an Introduction to Java class...
+##### This repo is in the format of an IntelliJ IDEA project; all .class files can be found in the src directory
 
 # Table of Contents:
 
