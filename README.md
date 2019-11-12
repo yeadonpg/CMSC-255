@@ -7,7 +7,7 @@
 ## 1) Homework:
 ###### Note: Hodge-Podge of homework projects; many of the earlier ones are undocumented.<br>
 Homework files are named by the following scheme:<br>
-<code>Exercise[Chapter Number]_[Exercise Number].class</code>
+<code>Exercise[Chapter Number]_[Exercise Number].java</code>
 
 ## 2) Labs:
 ###### Note: Some labs are missing; when I let my lab partner use his computer instead
