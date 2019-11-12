@@ -8,13 +8,18 @@ public class IceCreamShop {
         IceCream carolineOrder1 = new IceCream(Size.DOUBLE);
         carolineOrder1.setFlavor(Flavor.ROCKY_ROAD);
         carolineOrder1.setSauce(Sauce.CARAMEL);
+
         IceCream carolineOrder2 = new IceCream(Size.SUNDAE);
-
-
-        IceCream zachOrder = new IceCream(Size.SINGLE);
+        carolineOrder2.setFlavor(Flavor.VANILLA);
+        carolineOrder2.setSauce(Sauce.HOT_FUDGE);
+        carolineOrder2.setTopping(Topping.SPRINKLES);
 
         caroline.orderIceCream(carolineOrder1);
         caroline.orderIceCream(carolineOrder2);
+
+        IceCream zachOrder = new IceCream(Size.SINGLE);
+        zachOrder.setFlavor(Flavor.OREO);
+        zachOrder.setTopping(Topping.CANDY);
 
         zach.orderIceCream(zachOrder);
 
