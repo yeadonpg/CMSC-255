@@ -28,7 +28,7 @@
 - Lab 6: [Looping](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_6)
 - Lab 8: [Arrays](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_8)
 - Lab 9: [MineSweeper](https://github.com/yeadonpg/CMSC-255/blob/master/src/Labs/Lab_9/Lab9.java)
-- Lab 11:[Objects & Inheritance](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_11)
+- Lab 11: [Objects & Inheritance](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_11)
 - Lab 12: [Polymorphism](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_12)
 
 ## 3) Projects:
