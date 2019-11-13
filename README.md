@@ -18,7 +18,7 @@
 ###### Note: [See individual docs for more information](https://github.com/yeadonpg/CMSC-255/tree/master/src/Homework)
 
 ## 2) Labs:
-###### Description: Some labs are missing; when I let my lab partner use his computer instead
+###### Description: Some labs are missing; not all lab procedures allowed me to save the files that were created
 ###### Note: [See individual docs for more information](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs)
 - Lab 1: [Hello](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_1/Hello.java)
 - Lab 2: [Printing](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_2)
