@@ -1,4 +1,4 @@
-package Simple;
+package Testing.Simple;
 
 import java.util.Scanner;
 
