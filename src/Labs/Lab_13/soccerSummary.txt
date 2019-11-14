@@ -1,0 +1,3 @@
+Maximum goals Scored: Monaco 15
+Minimum goals Scored: Athletic Bilbao 1
+Average shots per Game: 15.565
