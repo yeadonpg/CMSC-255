@@ -1,3 +1,7 @@
+/*
+  THIS IS A PRE-MADE EXAMPLE OF A BASIC FILE READER / WRITER; PROVIDED BY THE LAB INSTRUCTOR
+  */
+
 package Labs.Lab_13;
 
 import java.io.File;

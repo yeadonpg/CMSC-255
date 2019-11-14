@@ -1,4 +1,4 @@
-package Testing.Simple;
+package Testing.Perceptron;
 
 import java.util.Scanner;
 

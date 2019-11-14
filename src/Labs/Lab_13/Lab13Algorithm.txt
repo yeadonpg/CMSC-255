@@ -1,3 +1,5 @@
+Creating an algorithm for Lab13.java, planning out the program's general structure
+
 BEGIN ALGORITHM
 
     try {

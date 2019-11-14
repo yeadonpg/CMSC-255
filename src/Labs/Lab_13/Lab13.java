@@ -6,6 +6,21 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class Lab13 {
+
+    /**
+     * <h2>Main Method</h2>
+     * Takes an input file, and reads the values stored in each line<br>
+     * File lines represent data on soccer teams; in the format:<br><br>
+     * <code>
+     *     ...<br>
+     *     [Team Name],[Number of Scores],[Number of Shots]\n<br>
+     *     [Team Name],[Number of Scores],[Number of Shots]\n<br>
+     *     [Team Name],[Number of Scores],[Number of Shots]\n<br>
+     *     ...<br><br>
+     * </code>
+     * While the data values are being read, the program calculates the best and worst team, as well as the average
+     * number of goals scored across all teams
+     * **/
     public static void main(String[] args) {
 
         try {
