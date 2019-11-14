@@ -30,6 +30,7 @@
 - Lab 9: [MineSweeper](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_9/Lab9.java)
 - Lab 11: [Objects & Inheritance](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_11)
 - Lab 12: [Polymorphism](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_12)
+- Lab 13: [File Reading & Writing](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_13/Lab13.java)
 
 ## 3) Projects:
 ###### Description: Most labs lack modern documentation
