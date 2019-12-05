@@ -1,0 +1,125 @@
+MAIN METHOD ALGORITHM
+
+flightData = first command line argument
+outputFile = second command line argument
+
+try {
+    File inputFile = new File(flightData)
+    using a method called parseData(File inputFile), parse flightData into an ArrayList<Flight> called 'allFlights'
+    System.out.println("Input file correct");
+} catch (FileNotFoundException e) {
+    System.out.println("Incorrect input filename");
+}
+
+File removeDataFile = new File("DataToRemove.txt");
+ArrayList<Flight> removeData = parseData(dataRemoveFile);
+
+use a method called removeData() to remove items from allFlights that exist in removeDataFile
+
+// Calculating the best fare flight
+Flight bestFareFlight = calcBestFare(allFlights);
+
+// Calculating the flight with the best fare per mile
+Flight bestFarePerMileFlight = calcBestFarePerMile(allFlights);
+
+try {
+    PrintWriter out = new PrintWriter(new File(outputFile));
+    writeOutData(allFlights, out);
+    System.out.println("Output file correct");
+} catch (FileNotFoundException e) {
+    System.out.println("Incorrect output filename");
+}
+
+
+END MAIN METHOD ALGORITHM
+
+------------------------------------------------------------------------------------------------------------------------
+
+BEGIN parseData(File inputFile) -> ArrayList<Flight> ALGORITHM
+
+// Instantiating the output ArrayList
+ArrayList<Flight> output = new ArrayList<>();
+
+// Parsing data, while there exists another line to parse
+while (inputFile.hasNextLine()) {
+
+    // Getting and splitting the next line into a list of Strings
+    String nextLine = inputFile.nextLine();
+    String[] lineData = nextLine.split(";");
+
+    // Skipping the line if the first piece of data in the line isn't a year
+    try {
+        // This line will execute properly if the first data entry is a year
+        int testForYear = Integer.parseInt(lineData[0])
+    } catch (NumberFormatException e) {
+        // Skip the rest of the loop
+        continue;
+    }
+
+    // Parsing lineData into individual variables
+    String year = lineData[0];
+    String city1 = lineData[1];
+    String city2 = lineData[2];
+
+    // Use a try/catch block to parse mkt_fare; set to 0.0 if an error is thrown
+    double mkt_fare = 0.0 or lineData[3];
+
+    // Use a try/catch block to parse distance; set to 0 if an error is thrown
+    int distance = 0 or lineData[4];
+
+    // Instantiating the flight from the given data
+    Flight newFlight = new Flight(year, city1, city2, mkt_fare, distance);
+
+    // Adding the instantiated flight to the output
+    output.add(newFlight);
+}
+
+return output;
+
+END parseData(File inputFile) -> ArrayList<Flight> ALGORITHM
+
+------------------------------------------------------------------------------------------------------------------------
+
+BEGIN removeData(ArrayList<Flight> allFlights, ArrayList<Flight> removeItems) -> void ALGORITHM
+
+for (Flight flight : allFlights) {
+    if (contains(removeItems, flight)) {
+        allFlights.remove(flight);
+    }
+}
+
+END removeData(ArrayList<Flight> allFlights, ArrayList<Flight> removeItems) -> void ALGORITHM
+
+------------------------------------------------------------------------------------------------------------------------
+
+BEGIN calcBestFare(ArrayList<Flight> allFlights) -> Flight ALGORITHM
+
+// Calculate the best fare, out of allFlights :)
+
+END calcBestFare(ArrayList<Flight> allFlights) -> Flight ALGORITHM
+
+------------------------------------------------------------------------------------------------------------------------
+
+BEGIN calcBestFarePerMile(ArrayList<Flight> allFlights) -> Flight ALGORITHM
+
+// Calculate the best fare per mile, out of allFlights :)
+
+END calcBestFarePerMile(ArrayList<Flight> allFlights) -> Flight ALGORITHM
+
+------------------------------------------------------------------------------------------------------------------------
+
+BEGIN writeOutData(ArrayList<Flight> allFlights, PrintWriter out) -> void ALGORITHM
+
+for (Flight flight : allFlights) {
+    out.println(String.format("%s %s %s %f %d", flight.getYear(),
+                                                flight.getStartCity(),
+                                                flight.getEndCity(),
+                                                flight.getPrice(),
+                                                flight.getDistance()
+                                                ));
+}
+out.close();
+
+END writeOutData(ArrayList<Flight> allFlights, PrintWriter out) -> void ALGORITHM
+
+------------------------------------------------------------------------------------------------------------------------
