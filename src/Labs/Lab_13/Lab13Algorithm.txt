@@ -1,0 +1,62 @@
+Creating an algorithm for Lab13.java, planning out the program's general structure
+
+BEGIN ALGORITHM
+
+    try {
+
+        Initialize a String variable for the inputFileName
+        Initialize the fileStream using the inputFileName
+
+        Initialize maxGoals = 0;
+        Initialize maxGoalsTeam;
+        Initialize minGoals = 1000;
+        Initialize minGoalsTeam;
+
+        Initialize totalNumShots
+        Initialize numTeams
+        Initialize avgNumShots
+
+        Set inputFileName to "SoccerStats.txt"
+
+        While there are additional lines in the input file {
+
+
+            String nextAvailableLine = next line
+
+            String[] nextAvailableLineData = nextAvailableLine.split(",")
+
+            for (int i = 0; i < nextAvailableLineData.length; i++) {
+
+                String elem = nextAvailableLineData[i]
+
+                numTeams++;
+
+                switch (i) {
+                    case 0:
+                        String teamName = elem;
+                    case 1:
+                        curNumGoals = Double.parseDouble(elem);
+                        if (curNumGoals > maxGoals) {
+                            maxGoalsTeam = teamName;
+                            maxGoals = curNumGoals;
+                        } else if (curNumGoals < maxGoals) {
+                            minGoalsTeam = teamName;
+                            minGoals = curNumGoals;
+                        }
+                    case 2:
+                        totalNumShots += Double.parseDouble(elem);
+                }
+            }
+
+            avgNumShots = totalNumShots / numTeams;
+
+            print("Maximum goals Scored: " + maxGoalsTeam);
+            print("Minimum goals Scores: " + minGoalsTeam);
+            print("Average shots per game: " + avgNumShots);
+
+    } catch (FileNotFoundException e) {
+        e.printStackTrace();
+    }
+
+
+END ALGORITHM
