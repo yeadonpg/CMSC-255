@@ -33,7 +33,7 @@
 - Lab 13: [File Reading & Writing](https://github.com/yeadonpg/CMSC-255/tree/master/src/Labs/Lab_13/Lab13.java)
 
 ## 3) Projects:
-###### Description: Most labs lack modern documentation
+###### Description: Most projects lack modern documentation
 ###### Note: [See individual docs for more information](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects)
 - Project 1: [NameArt](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_1/NameArt.java)
 - Project 2: [Palindrome](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_2/Palindrome.java)
@@ -41,6 +41,7 @@
 - Project 4: [TempConvert](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_4/TempConvert.java)
 - Project 5: [TravelDistances](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_5/TravelDistances.java)
 - Project 6: [Ice Cream Shop](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_6)
+- Project 7: [Flight Advisor](https://github.com/yeadonpg/CMSC-255/tree/master/src/Projects/Project_7)
 
 ## 4) Testing
 ###### Description: Testing out ideas for larger projects; once an idea is well-formed, it is moved into a new repo
