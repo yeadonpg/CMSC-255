@@ -1,0 +1,6 @@
+2018;Atlanta, GA (Metropolitan Area);Memphis, TN;289.8798238;332;
+2018;Boston, MA (Metropolitan Area);Buffalo, NY;130.4956899;395;
+2017;Charlotte, NC;St. Louis, MO;273.6228611;575;
+2017;Cincinnati, OH;Minneapolis/St. Paul, MN;306.9397207;334;
+2016;Asheville, NC;Miami, FL (Metropolitan Area);129.2055405;677;
+2016;Buffalo, NY;New York City, NY (Metropolitan Area);138.6866248;292;
