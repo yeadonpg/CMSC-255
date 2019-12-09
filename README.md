@@ -1,6 +1,6 @@
 # CMSC-255
 ###### All java-related files for my CMSC 255 class, Introduction to Programming
-###### This repo is in the format of an IntelliJ IDEA project; all .class files can be found in the src directory
+###### This repo is in the format of an IntelliJ IDEA project; all .java files can be found in the src directory
 
 # TODO:
 ###### Description: Tasks needed to be performed to achieve a more organized repository. Remove this section when done.
